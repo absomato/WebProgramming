@@ -22,7 +22,7 @@ public class BoardController {
 
         List<Board> boardList = boardRepository.findAll();
         //이게 뭐라고?
-        model.addAttribute("boars",boardList);
+        model.addAttribute("boards",boardList);
         return "index";
     }
 }
