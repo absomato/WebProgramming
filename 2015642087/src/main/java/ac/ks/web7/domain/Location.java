@@ -2,14 +2,17 @@ package ac.ks.web7.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 //Lombok
 @Getter
 @Setter
+@NoArgsConstructor
 
 //JPA
 @Entity
@@ -26,6 +29,13 @@ public class Location implements Serializable {
 
     @Column
     private String postcode;
+
+    @Column
+    private LocalDateTime updatedDate;
+
+    @Column
+    private LocalDateTime createdDate;
+
 
     @Builder
     public Location(String address, String postcode){
