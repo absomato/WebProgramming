@@ -30,6 +30,7 @@ public class WebApplication {
 					.updatedDate(LocalDateTime.now())
 					.build());
 		});
+
 	}
 
 }

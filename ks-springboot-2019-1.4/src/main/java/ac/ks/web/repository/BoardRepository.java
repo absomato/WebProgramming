@@ -8,4 +8,5 @@ import java.util.List;
 public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findAllByTitle(final String title);
     Board findFirstByTitle(final String title);
+
 }

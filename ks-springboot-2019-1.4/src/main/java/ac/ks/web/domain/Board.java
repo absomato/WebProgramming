@@ -49,7 +49,6 @@ public class Board implements Serializable {
     private Account account;
 
     @Builder
-
     public Board(String title, String subTitle, String content, BoardType boardType, LocalDateTime createdDate, LocalDateTime updatedDate, Account account) {
         this.title = title;
         this.subTitle = subTitle;
