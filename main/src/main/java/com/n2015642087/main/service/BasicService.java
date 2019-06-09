@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BasicService {
 
@@ -16,9 +18,9 @@ public class BasicService {
         this.basicRepository = basicRepository;
     }
 
-    public Page<Basic> findBasicList(Pageable pageable){
-        pageable = PageRequest.of(pageable.getPageNumber()<=0 ? 0 : pageable.getPageNumber()-1,pageable.getPageSize());
-        return basicRepository.findAll(pageable);
+
+    public List<Basic> findAll(){
+        return basicRepository.findAll();
     }
 
     public Basic findBasicByIdx(Long idx){return basicRepository.findById(idx).orElse(new Basic());}

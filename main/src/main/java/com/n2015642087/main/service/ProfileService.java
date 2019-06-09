@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProfileService {
 
@@ -16,9 +18,8 @@ public class ProfileService {
         this.profileRepository = profileRepository;
     }
 
-    public Page<Profile> findProfileList(Pageable pageable) {
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
-        return profileRepository.findAll(pageable);
+    public List<Profile> findAll(){
+        return profileRepository.findAll();
     }
     public Profile findProfileByIdx(Long idx){return profileRepository.findById(idx).orElse(new Profile()); }
 }
