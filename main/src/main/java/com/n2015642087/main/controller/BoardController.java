@@ -10,16 +10,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.LocalDateTime;
 
 
 @Controller
-public class BasicController {
+public class BoardController {
     private BasicService basicService;
     private BasicRepository basicRepository;
     private ProfileService profileService;
     private ProfileRepository profileRepository;
 
-    public BasicController(BasicService basicService, BasicRepository basicRepository, ProfileService profileService, ProfileRepository profileRepository) {
+    public BoardController(BasicService basicService, BasicRepository basicRepository, ProfileService profileService, ProfileRepository profileRepository) {
         this.basicService = basicService;
         this.basicRepository = basicRepository;
         this.profileService = profileService;
@@ -44,10 +47,25 @@ public class BasicController {
         return "itemprofile";
     }
     @GetMapping("/basic/new")
-    public String formbasic(Basic basic){return "newbasic";}
+    public String formBasic(Basic basic){return "newbasic";}
 
     @GetMapping("/profile/new")
-    public String formprofile(Profile profile){return "newprofile";}
+    public String formProfile(Profile profile){return "newprofile";}
 
-
+    @PostMapping("/basic/add")
+    public String addBasic(Basic basic, Model model){
+        basic.setCreatedDate(LocalDateTime.now());
+        basic.setUpdatedDate(LocalDateTime.now());
+        Basic saveBasic = basicRepository.save(basic);
+        model.addAttribute("basic",basicService.findBasicByIdx(saveBasic.getIdx()));
+        return "itembasic";
+    }
+    @PostMapping("/profile/add")
+    public String addProfile(Profile profile, Model model){
+        profile.setCreatedDate(LocalDateTime.now());
+        profile.setUpdatedDate(LocalDateTime.now());
+        Profile saveProfile = profileRepository.save(profile);
+        model.addAttribute("profile",profileService.findProfileByIdx(saveProfile.getIdx()));
+        return "itemprofile";
+    }
 }
