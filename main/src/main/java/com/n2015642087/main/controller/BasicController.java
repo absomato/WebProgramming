@@ -49,4 +49,5 @@ public class BasicController {
     @GetMapping("/profile/new")
     public String formprofile(Profile profile){return "newprofile";}
 
+
 }
